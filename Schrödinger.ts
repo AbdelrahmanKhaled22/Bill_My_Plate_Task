@@ -22,6 +22,11 @@ export class CatorNoCat {
   }
 
   private processFrame(frame: FrameState): boolean {
+    /*
+    if the state is CatPresent then the state can only change if 
+    the sufficient number of NoCat frames are sent
+    and vice versa
+    */
     const stateChangeFrame: FrameState = Number(!this.state);
 
     if (frame === stateChangeFrame) {
