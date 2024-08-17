@@ -1,12 +1,15 @@
-type MyBoolean = 0 | 1;
+enum Framestate {
+  NoCat = 0,
+  CatDetected = 1,
+}
 export class CatorNoCat {
   private requiredframes: number;
   private stack: number[] = [];
-  private state: MyBoolean = 0;
+  private state: Framestate = Framestate.NoCat;
   constructor(requiredframes: number) {
     this.requiredframes = requiredframes;
   }
-  shouldChangeState(frame: MyBoolean): MyBoolean {
+  shouldChangeState(frame: Framestate): Framestate {
     // When there is no cat im waiting for the cat frame which is 1
     if (this.state === 0) {
       if (frame === 0) {
