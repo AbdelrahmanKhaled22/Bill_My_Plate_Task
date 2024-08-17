@@ -7,6 +7,9 @@ export class CatorNoCat {
   private stack: number[] = [];
   private state: Framestate = Framestate.NoCat;
   constructor(requiredframes: number) {
+    if (requiredframes <= 0) {
+      throw new Error("Required frames must be a positive integer");
+    }
     this.requiredframes = requiredframes;
   }
   shouldChangeState(frame: Framestate): Framestate {
