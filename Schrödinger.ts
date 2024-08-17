@@ -1,4 +1,4 @@
-enum FrameState {
+enum FrameState { // Effectively it's a boolean but used for enhanced readability
   NoCat = 0,
   CatPresent = 1,
 }
@@ -10,6 +10,7 @@ export class CatorNoCat {
 
   constructor(requiredFrames: number) {
     if (requiredFrames <= 0) {
+      // input validation for negative numbers
       throw new Error("Required frames must be a positive integer");
     }
     this.requiredFrames = requiredFrames;
@@ -17,11 +18,11 @@ export class CatorNoCat {
 
   shouldChangeState(frame: FrameState): FrameState {
     const isStateChangeDetected = this.processFrame(frame);
-    return isStateChangeDetected ? FrameState.CatPresent : FrameState.NoCat;
+    return isStateChangeDetected ? 1 : 0;
   }
 
   private processFrame(frame: FrameState): boolean {
-    const stateChangeFrame = Number(!this.state);
+    const stateChangeFrame: FrameState = Number(!this.state);
 
     if (frame === stateChangeFrame) {
       this.counter++;
