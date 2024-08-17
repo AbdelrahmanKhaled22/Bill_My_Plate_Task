@@ -21,7 +21,7 @@ export class CatorNoCat {
         return 0;
       }
       if (frame === Framestate.CatDetected) {
-        this.stack.push(1);
+        this.stack.push(frame);
         // console.log(this.stack);
         if (this.stack.length === this.requiredframes) {
           this.state = Framestate.CatDetected;
@@ -42,7 +42,7 @@ export class CatorNoCat {
         return 0;
       }
       if (frame === Framestate.NoCat) {
-        this.stack.push(0);
+        this.stack.push(frame);
         // console.log(this.stack);
 
         if (this.stack.length === this.requiredframes) {
