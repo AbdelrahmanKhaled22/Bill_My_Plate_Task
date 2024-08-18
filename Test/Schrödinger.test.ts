@@ -1,12 +1,12 @@
 import { CatorNoCat } from "../Schrödinger";
 import fs from "fs";
 
-type MyBoolean = 0 | 1;
+type BinaryState = 0 | 1;
 
 type TestCase = {
   requiredFrames: number;
-  inputs: MyBoolean[];
-  expectedOutput: MyBoolean[];
+  inputs: BinaryState[];
+  expectedOutput: BinaryState[];
 };
 
 function readTestData(filePath: string): TestCase[] {
@@ -16,11 +16,11 @@ function readTestData(filePath: string): TestCase[] {
 
   for (let i = 0; i < lines.length; i += 3) {
     const requiredFrames = parseInt(lines[i], 10);
-    const inputs = lines[i + 1].trim().split("").map(Number) as MyBoolean[];
+    const inputs = lines[i + 1].trim().split("").map(Number) as BinaryState[];
     const expectedOutput = lines[i + 2]
       .trim()
       .split("")
-      .map(Number) as MyBoolean[];
+      .map(Number) as BinaryState[];
 
     testCases.push({
       requiredFrames,
@@ -41,7 +41,7 @@ describe("CatorNoCat", () => {
     }`, () => {
       const cat = new CatorNoCat(testCase.requiredFrames);
 
-      const results: MyBoolean[] = [];
+      const results: BinaryState[] = [];
       for (const input of testCase.inputs) {
         results.push(cat.shouldChangeState(input));
       }
