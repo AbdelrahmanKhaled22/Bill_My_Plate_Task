@@ -32,7 +32,10 @@ export class CatorNoCat {
     if (frame === stateChangeFrame) {
       this.counter++;
       if (this.counter === this.requiredFrames) {
-        this.state = stateChangeFrame;
+        this.state =
+          this.state === FrameState.NoCat
+            ? FrameState.CatPresent
+            : FrameState.NoCat;
         this.counter = 0;
         return true;
       }
